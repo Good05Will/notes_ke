@@ -1,0 +1,14 @@
+{% extends 'notes_app/base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header"><small>{{ note.date_add|date:'M d, Y H:i' }}</small></div>
+    <div class="card-body">
+        <h5 class="card-title">{{ note.title }}</h5>
+        <p class="card-text">{{ note.text|linebreaks }}</p>
+        <a class="btn btn-primary" href="{% url 'notes_app:edit_note' note.id %}">Редактировать</a>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "notes_app/base.html" %}
+
+{% block content %}
+
+<h6 class="card-header">Редактирование записи: {{note.title}}</h6>
+  <form action="{% url 'notes_app:edit_note' note.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Сохранить</button>
+  </form>
+
+{% endblock content %}

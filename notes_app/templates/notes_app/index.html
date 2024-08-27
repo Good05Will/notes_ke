@@ -1,0 +1,9 @@
+{% extends "notes_app/base.html" %}
+
+{% block page_header %}
+<h5>ГЛАВНАЯ СТРАНИЦА</h5>
+{% endblock page_header %}
+
+{% block content %}
+<h4><a class="nav-link" href="{% url 'notes_app:notes' %}">Мои заметки</a></h4>
+{% endblock content %}

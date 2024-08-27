@@ -1,0 +1,15 @@
+{% extends 'notes_app/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header"><h5>Регистрация</h5></div>
+    <div class="card-body">
+        <form action="{% url 'users:register' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit" class="btn btn-primary">Подтвердить</button>
+            <input type="hidden" name="next" value="{% url 'notes_app:index' %}" />
+        </form>
+    </div>
+</div>
+{% endblock content %}

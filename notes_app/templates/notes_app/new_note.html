@@ -1,0 +1,17 @@
+{% extends "notes_app/base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header"><p>Новая заметка:</p></div>
+      <div class="card-body">
+          <form action="{% url 'notes_app:new_note' %}" method='post'>
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button name="submit">Добавить заметку</button>
+          </form>
+      </div>
+</div>
+
+{% endblock content %}
+
