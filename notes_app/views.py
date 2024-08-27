@@ -14,7 +14,7 @@ def index(request):
 @login_required()
 def notes(request):
     '''Страница со всеми заметками.'''
-    notes = Note.objects.filter(owner=request.user).order_by('date_add')
+    notes = Note.objects.filter(owner=request.user).order_by('-date_add')
     context = {'notes':notes}
     return render(request, 'notes_app/notes.html', context)
 
@@ -41,6 +41,7 @@ def new_note(request):
         if form.is_valid():
             new_note = form.save(commit=False)
             new_note.owner = request.user
+            new_note.fixed_note()
             new_note.save()
             return redirect('notes_app:notes')
 
@@ -57,6 +58,7 @@ def edit_note(request, note_id):
     else:
         form = NoteForm(instance=note, data=request.POST)
         if form.is_valid():
+            note.fixed_note()
             form.save()
             return redirect('notes_app:note', note_id=note.id)
     context = {'note':note, 'form':form}

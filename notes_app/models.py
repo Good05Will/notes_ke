@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from pyaspeller import YandexSpeller
 
 class Note(models.Model):
     '''Модель заметки.'''
@@ -14,3 +15,9 @@ class Note(models.Model):
             return f'{self.title[:33]}...'
         else:
             return f'{self.title}'
+
+    def fixed_note(self):
+        speller = YandexSpeller()
+        self.title = speller.spelled(self.title)
+        self.text = speller.spelled(self.text)
+        return None
