@@ -50,7 +50,7 @@ def notes(request):
 
 
 @login_required()
-def note(request, note_id):
+def note(request, note_id: int):
     '''Выводит отдельную заметку.'''
     note = Note.objects.get(id=note_id)
     if note.user != request.user:
@@ -76,7 +76,7 @@ def new_note(request):
 
 
 @login_required()
-def edit_note(request, note_id):
+def edit_note(request, note_id: int):
     '''Редактирует существующую запись.'''
     note = Note.objects.get(id=note_id)
     if request.method != 'POST':
