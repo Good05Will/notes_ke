@@ -11,6 +11,6 @@ urlpatterns = [
     path('note/<int:note_id>/', views.note, name='note'),
     # Новая заметка
     path('new_note/', views.new_note, name='new_note'),
-    # Редактирование ЗАПИСИ
+    # Редактирование заметки
     path('edit_note/<int:note_id>/', views.edit_note, name='edit_note'),
 ]

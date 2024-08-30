@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from pyaspeller import YandexSpeller
 
+
 class Note(models.Model):
     '''Модель заметки.'''
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
     date_add = models.DateTimeField(auto_now_add=True)
@@ -16,8 +17,9 @@ class Note(models.Model):
         else:
             return f'{self.title}'
 
-    def fixed_note(self):
+    def fixe_note(self):
         speller = YandexSpeller()
         self.title = speller.spelled(self.title)
         self.text = speller.spelled(self.text)
-        return None
+        self.save()
+        return self
